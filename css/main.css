@@ -94,7 +94,7 @@ section {
 	min-height: 100vh;
 }
 section:nth-child(even) {
-	background: rgba(0, 0, 0, 0.03);
+	background-color: rgba(0, 0, 0, 0.03);
 }
 
 .row {
