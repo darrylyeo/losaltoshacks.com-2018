@@ -63,6 +63,8 @@ function throttle(func, time = 200){
 		mouse.xPercent = mouse.x / (width / 2) - 1
 		mouse.yPercent = mouse.y / (height / 2) - 1
 	})
+
+	let isInteractive = true
 	
 	const draw = () => {
 		resetTransform()
@@ -89,13 +91,15 @@ function throttle(func, time = 200){
 			restore()
 
 			// Random rectangles centered around mouse
-			save()
-				translate(mouse.x + random() * 100, mouse.y + random() * 100)
-				rotate(random() * 60 * DEG)
-				for(const c of 'sely'){
-					fillRect(0, 0, random(-100, 100), random(-100, 100))
-				}
-			restore()
+			if(isInteractive){
+				save()
+					translate(mouse.x + random() * 100, mouse.y + random() * 100)
+					rotate(random() * 60 * DEG)
+					for(const c of 'sely'){
+						fillRect(0, 0, random(-100, 100), random(-100, 100))
+					}
+				restore()
+			}
 		restore()
 
 		//$globalCompositeOperation('multiply')
@@ -104,8 +108,20 @@ function throttle(func, time = 200){
 	}
 
 	const loop = () => {
-		draw()
-		requestAnimationFrame(loop)
+		isInteractive = window.innerWidth >= 800
+		if(isInteractive){
+			draw()
+			timeout = setTimeout(() => requestAnimationFrame(loop), 50)
+		}else{
+			for(let i = 0; i < 400; i++){
+				draw()
+			}
+		}
 	}
 	loop()
+	window.addEventListener('resize', throttle(() => {
+		loop()
+	}), {
+		passive: true
+	})
 }
