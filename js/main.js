@@ -52,7 +52,7 @@ function throttle(func, time = 200){
 		return boundMethods
 	}
 
-	const {fill, fillRect, save, restore, translate, rotate, $fillStyle, $globalAlpha, $globalCompositeOperation} = bindMethods(context)
+	const {fill, fillRect, save, restore, resetTransform, translate, rotate, $fillStyle, $globalAlpha, $globalCompositeOperation} = bindMethods(context)
 	const random = (a = -1, b = 1) => a + Math.random() * (b - a)
 	const DEG = Math.PI / 180
 
@@ -65,6 +65,7 @@ function throttle(func, time = 200){
 	})
 	
 	const draw = () => {
+		resetTransform()
 		save()
 			let
 				hue = 204 + mouse.xPercent * 80 + random() * 1000,
