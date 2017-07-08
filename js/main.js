@@ -68,7 +68,7 @@ function throttle(func, time = 200){
 		resetTransform()
 		save()
 			let
-				hue = 204 + mouse.xPercent * 80 + random() * 1000,
+				hue = 204 + mouse.xPercent * 80 + random() * 100,
 				saturation = .69 + mouse.yPercent * .2,
 				lightness = .49
 
