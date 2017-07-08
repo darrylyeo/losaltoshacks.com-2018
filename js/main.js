@@ -3,6 +3,29 @@ const X = console.log
 
 const $ = s => document.querySelector.call(document, s)
 
+// Returns a version of func that won't be executed more than once in a given interval of time.
+function throttle(func, time = 200){
+	let shouldWait = false
+	let later
+	return function(){
+		if (!shouldWait) {
+			func.apply(this, arguments)
+			shouldWait = true
+			setTimeout(() => {
+				shouldWait = false
+				if(later){
+					later()
+					later = undefined
+				}
+			}, time)
+		}else{
+			later = () => {
+				func.apply(this, arguments)
+			}
+		}
+	}
+}
+
 // Canvas animation by Darryl Yeo (darryl-yeo.com)
 {
 	const canvas = $('#top-canvas')
