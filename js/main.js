@@ -30,10 +30,13 @@ function throttle(func, time = 200){
 {
 	const canvas = $('#top-canvas')
 
-	let width = canvas.clientWidth, height = canvas.clientHeight
-	const resize = () => Object.assign(canvas, {width, height})
+	let width, height
+	const resize = () => {
+		width = window.innerWidth, height = window.innerHeight
+		Object.assign(canvas, {width, height})
+	}
 	resize()
-	window.addEventListener('resize', resize)
+	window.addEventListener('resize', throttle(resize))
 	
 	const context = canvas.getContext('2d')
 
