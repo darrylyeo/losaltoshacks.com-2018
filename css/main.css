@@ -36,7 +36,7 @@ main a {
 	font-weight: 600;
 }
 
-img {
+img, canvas {
 	display: block;
 	width: 100%;
 	max-width: 100%;
@@ -130,9 +130,9 @@ section:nth-child(even) {
 	}
 }
 
-#teaser-animation {
+/*#teaser-animation {
 	mix-blend-mode: multiply;
-}
+}*/
 
 #top-canvas {
 	position: absolute;
