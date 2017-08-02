@@ -142,6 +142,7 @@ section:nth-child(even) {
 	top: 0;
 	mix-blend-mode: overlay;
 	mix-blend-mode: color-burn;
+	pointer-events: none;
 	/*opacity: 0.75;*/
 }
 

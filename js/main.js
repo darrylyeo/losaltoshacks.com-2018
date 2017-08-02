@@ -57,7 +57,7 @@ function throttle(func, time = 200){
 	const DEG = Math.PI / 180
 
 	let mouse = {x: width / 2, y: height / 2, xPercent: 0, yPercent: 0}
-	canvas.addEventListener('mousemove', e => {
+	window.addEventListener('mousemove', e => {
 		mouse.x = e.clientX
 		mouse.y = e.clientY
 		mouse.xPercent = mouse.x / (width / 2) - 1
